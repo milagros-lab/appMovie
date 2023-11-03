@@ -21,23 +21,25 @@ function Home() {
   console.log(movies);
 
   return (
-    <Grid container spacing={2} style={{ px: 20, py: 20 }}>
-      {movies.map((movie) => (
-        <Grid item xs={3} key={movie.id}>
-          <Box>
-            <Card>
-              <CardContent>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                />
-              </CardContent>
-            </Card>
-          </Box>
-        </Grid>
-      ))}
-    </Grid>
+    <div style={{ backgroundColor: '#000000ed' }}>
+      <Grid container spacing={2} style={{ paddingTop: '20px', paddingRight: '20px', paddingLeft: '20px' }}>
+        {movies.map((movie) => (
+          <Grid item xs={3} key={movie.id}>
+            <Box>
+              <Card>
+                <CardContent style={{ padding: '0px' }}>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  />
+                </CardContent>
+              </Card>
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
+    </div>
   );
 }
 
