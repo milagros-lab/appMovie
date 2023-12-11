@@ -79,7 +79,7 @@ const ModalTrailer = ({ location }) => {
     <div style={{ marginBottom: "30px" }}>
       <Button
         variant="contained"
-        sx={{ color: "white", bgcolor: "red" }}
+        sx={{ color: "white", bgcolor: "blue" }}
         onClick={openModal}
       >
         See trailer

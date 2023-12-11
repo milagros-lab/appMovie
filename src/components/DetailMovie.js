@@ -1,5 +1,5 @@
 import React from "react"
-import { MovieTrailer } from "./MovieTrailer"
+import { MovieTrailer }  from "./MovieTrailer"
 import { Grid } from "@mui/material"
 import { MovieReview } from "./MovieReview"
 
