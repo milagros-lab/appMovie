@@ -87,11 +87,9 @@ function Navbar() {
         <h1
           style={{ color: '#F1F1F1', fontSize: '70px', fontFamily: 'initial' }}
         >
-          {/* {featuredMovie.original_title} */}
           {movies[4]?.original_title}
         </h1>
         <h3 style={{ color: '#F1F1F1', textAlign: 'left', width: '500px' }}>
-          {/* {featuredMovie.overview} */}
           {movies[4]?.overview}
         </h3>
       </div>

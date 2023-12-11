@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { doc, setDoc } from 'firebase/firestore';
+// eslint-disable-next-line object-curly-newline
 import { Box, Card, CardContent, CardMedia, Grid } from '@mui/material';
-import { database, auth } from '../firebase/setup';
+import { database } from '../firebase/setup';
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -10,7 +11,7 @@ function Home() {
   const getMovie = useCallback(() => {
     try {
       fetch(
-        'https://api.themoviedb.org/3/discover/movie?api_key=4a5ee9e17830a25573db11f304ede548'
+        'https://api.themoviedb.org/3/discover/movie?api_key=4a5ee9e17830a25573db11f304ede548',
       )
         .then((res) => res.json())
         .then((json) => setMovies(json.results));
@@ -52,7 +53,7 @@ function Home() {
           return (
             <Grid item xs={12} sm={4} md={3} key={movie.id}>
               <Box>
-                <Link to="/detailMovie" state={{ movie: movie }}>
+                <Link to="/detailMovie" state={{ movie }}>
                   <Card>
                     <CardContent style={{ padding: '0px' }}>
                       <CardMedia

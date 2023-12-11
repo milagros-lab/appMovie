@@ -10,6 +10,6 @@
     "sourceType": "module"
   },
   "rules": {
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": ["error", "double", { "extensions": [".js", ".jsx"] }]
   }
 }
