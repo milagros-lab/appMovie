@@ -1,12 +1,17 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Home from './components/Home';
+import { Route, Routes } from 'react-router-dom';
+import Main from './components/Main';
+import Signin from './components/Signin';
+import DetailMovie from './components/DetailMovie';
 
 function App() {
   return (
     <div>
-      <Navbar />
-      <Home />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/detailMovie" element={<DetailMovie />} />
+      </Routes>
     </div>
   );
 }
