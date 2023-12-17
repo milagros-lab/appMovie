@@ -6,7 +6,7 @@ describe('Navbar', () => {
   it('should display the user access button with the text', () => {
     render(<Navbar />);
     expect(
-      screen.getByRole('button', { name: /SINGIN/i }),
+      screen.getByRole('button', { name: /SINGIN/i || /LOGOUT/i }),
     ).toBeInTheDocument();
   });
 });

@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { signOut } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import netflix from '../images/netflix.png';
 import { auth } from '../firebase/setup';
-import ModalTrailer from './ModalTrailer';
 
-function Navbar() {
-  const location = useLocation();
-
+const Navbar = () => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
+
   const getMovie = () => {
     try {
       fetch(
@@ -28,6 +26,7 @@ function Navbar() {
   const siningClick = () => {
     navigate('/signin');
   };
+
   const logoutClick = async () => {
     try {
       await signOut(auth);
@@ -38,6 +37,7 @@ function Navbar() {
       console.error(error);
     }
   };
+  
   useEffect(() => {
     getMovie();
   }, []);
@@ -45,10 +45,10 @@ function Navbar() {
   return (
     <div
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original${movies[4]?.poster_path})`,
-        backgroundPosition: 'center',
+        backgroundImage: `url(https://image.tmdb.org/t/p/original${movies[8]?.poster_path})`,
+       backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        backgroundSize: 'cover', 
         height: '600px',
         width: '100%',
       }}
@@ -64,7 +64,7 @@ function Navbar() {
         <img
           style={{ width: '80px', height: '80px' }}
           src={netflix}
-          alt="logo netflix"
+          alt="Netflix"
         />
         <div>
           {auth.currentUser?.emailVerified ? (
@@ -83,18 +83,18 @@ function Navbar() {
               variant="contained"
               sx={{ height: '50px' }}
             >
-              SingIn
+              SIGNIN
             </Button>
           )}
         </div>
       </div>
       <div style={{ paddingLeft: '20px' }}>
         <h1
-          style={{ color: '#F1F1F1', fontSize: '70px', fontFamily: 'initial' }}
+          style={{ color: 'red', fontSize: '70px', fontFamily: 'initial' }}
         >
           {movies[4]?.original_title}
         </h1>
-        <h3 style={{ color: '#F1F1F1', textAlign: 'left', width: '500px' }}>
+        <h3 style={{ color: 'white', textAlign: 'left', width: '500px' }}>
           {movies[4]?.overview}
         </h3>
       </div>

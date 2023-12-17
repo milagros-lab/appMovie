@@ -1,71 +1,71 @@
-import { Button } from "@mui/material"
-import React, { useState, useEffect } from "react"
-import Modal from "react-modal"
-import YouTube from "react-youtube"
+import { Button } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
+import YouTube from 'react-youtube';
 
 const customStyles = {
   overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   content: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: "black",
-    padding: "20px",
-    outline: "none",
-    maxWidth: "90%",
-    maxHeight: "90vh",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'black',
+    padding: '20px',
+    outline: 'none',
+    maxWidth: '90%',
+    maxHeight: '90vh',
   },
-}
+};
 
 const ModalTrailer = ({ location }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [trailerKey, setTrailerKey] = useState(null)
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [trailerKey, setTrailerKey] = useState(null);
   const [windowDimensions, setWindowDimensions] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
-  })
+  });
 
   useEffect(() => {
     const handleResize = () => {
       setWindowDimensions({
         height: window.innerHeight,
         width: window.innerWidth,
-      })
-    }
+      });
+    };
 
-    window.addEventListener("resize", handleResize)
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [])
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const openModal = async () => {
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${location.state.movie.id}/videos?api_key=4a5ee9e17830a25573db11f304ede548&language=en-US`
-      )
-      const data = await response.json()
+      );
+      const data = await response.json();
 
       if (data.results.length > 0) {
-        setTrailerKey(data.results[0].key)
-        setModalIsOpen(true)
+        setTrailerKey(data.results[0].key);
+        setModalIsOpen(true);
       } else {
-        console.log("No se encontró un tráiler para esta película.")
+        console.log('No se encontró un tráiler para esta película.');
       }
     } catch (error) {
-      console.error("Error al obtener el tráiler:", error)
+      console.error('Error al obtener el tráiler:', error);
     }
-  }
+  };
 
   const closeModal = () => {
-    setModalIsOpen(false)
-  }
+    setModalIsOpen(false);
+  };
 
   const opts = {
     height: (windowDimensions.height * 0.7).toString(),
@@ -73,13 +73,13 @@ const ModalTrailer = ({ location }) => {
     playerVars: {
       autoplay: 1,
     },
-  }
+  };
 
   return (
-    <div style={{ marginBottom: "30px" }}>
+    <div style={{ marginBottom: '30px' }}>
       <Button
         variant="contained"
-        sx={{ color: "white", bgcolor: "blue" }}
+        sx={{ color: 'white', bgcolor: 'red' }}
         onClick={openModal}
       >
         See trailer
@@ -95,14 +95,14 @@ const ModalTrailer = ({ location }) => {
 
         <Button
           variant="contained"
-          sx={{ color: "black", bgcolor: "white" }}
+          sx={{ color: 'black', bgcolor: 'white' }}
           onClick={closeModal}
         >
           Close
         </Button>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default ModalTrailer
+export default ModalTrailer;

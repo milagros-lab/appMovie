@@ -4,12 +4,12 @@
     "es6": true,
     "jest": true
   },
-  "extends": ["recommended", "airbnb"],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "rules": {
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]   
   }
 }

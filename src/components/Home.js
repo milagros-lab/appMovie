@@ -20,9 +20,7 @@ function Home() {
     }
   }, []);
 
-  useEffect(() => {
-    getMovie();
-  }, [getMovie]);
+ 
 
   const addMovie = async (movie) => {
     const movieRef = doc(database, 'Movies', `${movie.id}`);
@@ -34,31 +32,34 @@ function Home() {
       console.error(error);
     }
   };
-
+ useEffect(() => {
+    getMovie();
+    addMovie();
+  }, [getMovie]);
   return (
     <div style={{ backgroundColor: '#100f0fed' }}>
-      <Grid
-        container
-        spacing={2}
+      <Grid container 
+        spacing={2}    
         style={{
           paddingTop: '20px',
           paddingRight: '20px',
           paddingLeft: '20px',
           marginTop: 'auto',
           paddingBottom: '10px',
+          justifyContent: "center",
         }}
       >
+        ,
         {movies.map((movie) => {
-          addMovie(movie);
           return (
-            <Grid item xs={12} sm={4} md={3} key={movie.id}>
+            <Grid item xs={12} sm={6} md={3} 
+            key={movie.id}>
               <Box>
                 <Link to="/detailMovie" state={{ movie }}>
-                  <Card>
-                    <CardContent style={{ padding: '0px' }}>
+                  <Card >
+                    <CardContent style={{ padding: '0px'}} >
                       <CardMedia
                         component="img"
-                        height="10%"
                         image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                       />
                     </CardContent>
