@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import { useLocation } from 'react-router-dom';
 import YouTube from 'react-youtube';
 
 const customStyles = {
@@ -22,7 +23,11 @@ const customStyles = {
   },
 };
 
-const ModalTrailer = ({ location }) => {
+// eslint-disable-next-line react/prop-types
+const ModalTrailer = () => {
+
+  const location = useLocation();
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [trailerKey, setTrailerKey] = useState(null);
   const [windowDimensions, setWindowDimensions] = useState({

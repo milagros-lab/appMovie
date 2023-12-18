@@ -23,7 +23,7 @@ function Signin() {
   };
    
   return (
-    <Box  container style={{ backgroundColor: "#100f0fed", height: "100vh"}}>
+    <Box  container="true" style={{ backgroundColor: "#100f0fed", height: "100vh"}}>
      <ToastContainer autoClose={1000}/>
       <img  style={{ width: '80px', height: '80px' }} src={netflix} alt="logo netflix"/>
       <div style={{ position: "fixed", left: "45%", top: "45%" }}>

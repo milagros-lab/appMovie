@@ -8,21 +8,30 @@ import { database } from '../firebase/setup';
 function Home() {
   const [movies, setMovies] = useState([]);
 
-  const getMovie = useCallback(() => {
+  const getMovie = useCallback(async() => {
     try {
-      fetch(
+      const response = await fetch(
         'https://api.themoviedb.org/3/discover/movie?api_key=4a5ee9e17830a25573db11f304ede548',
-      )
-        .then((res) => res.json())
-        .then((json) => setMovies(json.results));
+      );
+      if(!response.ok) {
+        throw new Error("error fetching movies");
+      }
+      const json = await response.json();
+      setMovies(json.results);
+      return json.results;
     } catch (error) {
       console.error(error);
+      return [];
     }
   }, []);
 
  
 
   const addMovie = async (movie) => {
+    if (!movie || !movie.id) {
+      console.error("Movie object or id is undefined");
+      return;
+    }
     const movieRef = doc(database, 'Movies', `${movie.id}`);
     try {
       await setDoc(movieRef, {
@@ -32,10 +41,17 @@ function Home() {
       console.error(error);
     }
   };
- useEffect(() => {
-    getMovie();
-    addMovie();
+  useEffect(() => {
+    const fetchData = async () => {
+      const movieData = await getMovie();
+      if (movieData && movieData.length > 0) {
+        addMovie(movieData[0]); // You can choose the first movie or handle the array appropriately
+      }
+    };
+  
+    fetchData();
   }, [getMovie]);
+
   return (
     <div style={{ backgroundColor: '#100f0fed' }}>
       <Grid container 
@@ -55,7 +71,7 @@ function Home() {
             <Grid item xs={12} sm={6} md={3} 
             key={movie.id}>
               <Box>
-                <Link to="/detailMovie" state={{ movie }}>
+                <Link to="/detailMovie" state={{ movie: movie }}>
                   <Card >
                     <CardContent style={{ padding: '0px'}} >
                       <CardMedia

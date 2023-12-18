@@ -7,12 +7,7 @@ import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const reviewContainerStyle = {
-  maxHeight: '500px', // Ajusta según tus necesidades
-  overflowY: 'auto', // Añade barra de desplazamiento si es necesario
-};
-
-export const MovieReview = ({ getMovieCallback }) => {
+export const MovieReview = () => {
   const location = useLocation();
 
   const [review, setReview] = useState('');
@@ -20,7 +15,6 @@ export const MovieReview = ({ getMovieCallback }) => {
 
   const moviewRef = doc(database, 'Movies', `${location.state.movie.id}`);
   const reviewRef = collection(moviewRef, 'Reviews');
-  console.log('console del auth', auth);
 
   const showReview = async () => {
     try {
